@@ -15,26 +15,25 @@ const checkPriority = (element) => {
   return priorityMap[element];
 };
 
-
 const peek = (stack) => stack[stack.length - 1];
 
+const findOpenBracket = (stack, output) => {
+  while (stack.length !== 0) {
+    const element = stack.pop();
+    if (isOpenBracket(element)) {
+      return [stack, output];
+    }
+    output.push(element);
+  }
+  return [stack, output];
+};
 
 const parse = (expression) => {
   if (expression === '') return [];
 
-  const findOpenBracket = (stack, output) => {
-    while (stack.length !== 0) {
-      const symbol = stack.pop();
-      if (isOpenBracket(symbol)) {
-        return [stack, output];
-      }
-      output.push(symbol);
-    }
-    return [stack, output];
-  };
-
   let stack = [];
   let output = [];
+
   const arrayOfElements = expression.split(' ');
 
   arrayOfElements.map((element) => {
@@ -51,21 +50,20 @@ const parse = (expression) => {
     }
 
     if (isBinaryOperator(element)) {
-      let symbol = peek(stack);
-      while ((checkPriority(symbol) >= checkPriority(element)) && stack.length !== 0) {
-        symbol = stack.pop();
-        output.push(symbol);
-        symbol = peek(stack);
+      let elementFromStask = peek(stack);
+      while ((checkPriority(elementFromStask) >= checkPriority(element)) && stack.length !== 0) {
+        output.push(stack.pop());
+        elementFromStask = peek(stack);
       }
+
       stack.push(element);
     }
 
-    return { error: 'found incorrect symbol', symbol: element };
+    return { error: 'found incorrect symbol', element };
   });
 
   while (stack.length !== 0) {
-    const symbol = stack.pop();
-    output.push(symbol);
+    output.push(stack.pop());
   }
 
   return output;
