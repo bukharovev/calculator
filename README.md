@@ -1,1 +1,1 @@
-# calculator
+[![Maintainability](https://api.codeclimate.com/v1/badges/b6fecb321d77b3c5bea2/maintainability)](https://codeclimate.com/github/bukharovev/calculator/maintainability)
