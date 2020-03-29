@@ -9,6 +9,6 @@ program
   .arguments('<expression>')
   .description('calculate math expression.')
   .action((expression) => (
-    console.log(calculate(firstConfig))
+    console.log(calculate(expression))
   ))
   .parse(process.argv);
