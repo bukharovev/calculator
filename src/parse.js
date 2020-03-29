@@ -49,28 +49,28 @@ const parse = (expression) => {
 		const arrayOfElements = expression.split(' ')
 
 		for (const element of arrayOfElements) {
-			console.log('element = ', element)
+			// console.log('element = ', element)
 			if (isNumber(element)) {
-				console.log('isNumber = ', Number(element))
+				//console.log('isNumber = ', Number(element))
 				output.push(Number(element))
 				continue
 			}
 
 			if (isOpenBracket(element)) {
-				console.log('isOpen = ', element)
+				//console.log('isOpen = ', element)
 				stack.push(element)
 				continue
 			}
 
 			if (isClosedBracket(element)) {
-				console.log('isClosed = ', element)
+				//console.log('isClosed = ', element)
 				const resultSearchOpenBracket = findOpenBracket()
 				//if (resultSearchOpenBracket.error !== undefined) throw new Error(resultSearchOpenBracket.error)
 				continue
 			}
 			
 			if (isBinaryOperator(element)) {
-				console.log('isBinaryOperator = ', element)
+				//console.log('isBinaryOperator = ', element)
 				let symbol = peek(stack)
 				while ((checkPriority(symbol) >= checkPriority(element)) && stack.length !== 0) {
 					symbol = stack.pop()
@@ -80,6 +80,7 @@ const parse = (expression) => {
 				stack.push(element)
 				continue
 			}
+
 			return { error: 'found incorrect symbol', symbol: element }
 		}
 
@@ -88,8 +89,8 @@ const parse = (expression) => {
 			output.push(symbol)
 		}
 
-		console.log('!!! OUTPUT = ', output)
-		console.log('!!! STACK = ', stack)
+		// console.log('!!! OUTPUT = ', output)
+		// console.log('!!! STACK = ', stack)
 		return output
 	} catch (e) {
 		return { error: e.message }
