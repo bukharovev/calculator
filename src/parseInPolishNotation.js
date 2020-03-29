@@ -14,6 +14,7 @@ const parse = (expression) => {
 
   const arrayOfElements = expression.split(' ');
 
+  // eslint-disable-next-line array-callback-return
   arrayOfElements.map((element) => {
     if (isNumber(element)) {
       output.push(Number(element));
@@ -33,11 +34,8 @@ const parse = (expression) => {
         output.push(stack.pop());
         elementFromStask = peek(stack);
       }
-
       stack.push(element);
     }
-
-    return { error: 'found incorrect symbol', element };
   });
 
   while (stack.length !== 0) {
