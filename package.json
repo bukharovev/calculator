@@ -9,7 +9,7 @@
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "calculator": "dist/bin/calculator.js"
+    "calculate": "dist/bin/calculator.js"
   },
   "files": [
     "dist"
