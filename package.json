@@ -1,6 +1,6 @@
 {
-  "name": "calculator",
-  "version": "1.0.0",
+  "name": "calculator-bukharovev",
+  "version": "1.0.1",
   "description": "calculate math expression",
   "main": "index.js",
   "scripts": {
