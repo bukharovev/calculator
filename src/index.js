@@ -1,11 +1,10 @@
-import parse from './parser';
-// import { isOperator } from './predicates/
+import parseInPolishNotation from './parseInPolishNotation';
 import calcInPolishNotation from './calcInPolishNotation';
 
 const calculator = (expression) => {
-  const reversePolishNotation = parse(expression);
-
+  const reversePolishNotation = parseInPolishNotation(expression);
   const result = calcInPolishNotation(reversePolishNotation);
+
   return result;
 };
 

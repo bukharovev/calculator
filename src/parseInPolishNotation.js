@@ -1,32 +1,10 @@
+import getPriority from './getPriority';
+import findOpenBracket from './findOpenBracket';
 import {
   isNumber, isOpenBracket, isClosedBracket, isBinaryOperator,
 } from './predicates';
 
-const checkPriority = (element) => {
-  const priorityMap = {
-    '(': 0,
-    ')': 0,
-    '+': 1,
-    '-': 1,
-    '*': 2,
-    '/': 2,
-  };
-
-  return priorityMap[element];
-};
-
 const peek = (stack) => stack[stack.length - 1];
-
-const findOpenBracket = (stack, output) => {
-  while (stack.length !== 0) {
-    const element = stack.pop();
-    if (isOpenBracket(element)) {
-      return [stack, output];
-    }
-    output.push(element);
-  }
-  return [stack, output];
-};
 
 const parse = (expression) => {
   if (expression === '') return [];
@@ -51,7 +29,7 @@ const parse = (expression) => {
 
     if (isBinaryOperator(element)) {
       let elementFromStask = peek(stack);
-      while ((checkPriority(elementFromStask) >= checkPriority(element)) && stack.length !== 0) {
+      while ((getPriority(elementFromStask) >= getPriority(element)) && stack.length !== 0) {
         output.push(stack.pop());
         elementFromStask = peek(stack);
       }

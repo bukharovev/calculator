@@ -4,6 +4,7 @@ export const isNumber = (symbol) => {
 };
 
 export const isOpenBracket = (symbol) => symbol === '(';
+
 export const isClosedBracket = (symbol) => symbol === ')';
 
 export const isBinaryOperator = (symbol) => {
