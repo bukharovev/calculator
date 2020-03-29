@@ -1,6 +1,6 @@
 import { isOpenBracket } from './predicates';
 
-export default (stack, output) => {
+const findOpenBracket = (stack, output) => {
   while (stack.length !== 0) {
     const element = stack.pop();
     if (isOpenBracket(element)) {
@@ -10,3 +10,5 @@ export default (stack, output) => {
   }
   return [stack, output];
 };
+
+export default findOpenBracket;

@@ -1,9 +1,10 @@
-import parseInPolishNotation from './parseInPolishNotation';
-import calcInPolishNotation from './calcInPolishNotation';
+import parseInReversePolishNotation from './parseInReversePolishNotation';
+import calcInReversePolishNotation from './calcInReversePolishNotation';
 
 const calculator = (expression) => {
-  const reversePolishNotation = parseInPolishNotation(expression);
-  const result = calcInPolishNotation(reversePolishNotation);
+  const reversePolishNotation = parseInReversePolishNotation(expression);
+
+  const result = calcInReversePolishNotation(reversePolishNotation);
 
   return result;
 };
