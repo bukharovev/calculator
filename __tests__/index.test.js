@@ -1,5 +1,6 @@
 import { isNumber } from '../src/predicates';
 import parse from '../src/parseInPolishNotation';
+import calcInPolishNotation from '../src/calcInPolishNotation';
 import calculator from '../src/index';
 
 test('isNumber', () => {
@@ -22,6 +23,12 @@ test('parse', () => {
   expect(parse('( ( 3 + 5 ) / ( 5 - 1 ) ) * 10')).toEqual([3, 5, '+', 5, 1, '-', '/', 10, '*']);
   expect(parse('3 + 6 * 2 / ( 8 - 5.2 ) - 2')).toEqual([3, 6, 2, '*', 8, 5.2, '-', '/', '+', 2, '-']);
   expect(parse('300 + 6 * 2 / ( 1 + 5 ) - 2.5')).toEqual([300, 6, 2, '*', 1, 5, '+', '/', '+', 2.5, '-']);
+});
+
+test('reverse polish notation', () => {
+  expect(calcInPolishNotation([1, 2, '+', 4, '*', 3, '+'])).toBe(15);
+  expect(calcInPolishNotation([7, 2, 3, '*', '-'])).toBe(1);
+  expect(calcInPolishNotation([1, 2, '+', 2, '*'])).toBe(6);
 });
 
 test('calculate', () => {
