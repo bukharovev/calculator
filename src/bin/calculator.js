@@ -7,7 +7,7 @@ import calculate from '..';
 program
   .version(version)
   .arguments('<expression>')
-  .description('computes expression.')
+  .description('calculate math expression.')
   .action((expression) => (
     console.log(calculate(firstConfig))
   ))
