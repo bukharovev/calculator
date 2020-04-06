@@ -1,12 +1,14 @@
-import parseInReversePolishNotation from './parseInReversePolishNotation';
-import calcInReversePolishNotation from './calcInReversePolishNotation';
+import ParserReversePolishNotation from './entities/ParserReversePolishNotation';
+import CalculatorReversePolishNotation from './entities/CalculatorReversePolishNotation';
+import Calculator from './entities/Calculator';
 
-const calculator = (expression) => {
-  const reversePolishNotation = parseInReversePolishNotation(expression);
+const calculate = (expression) => {
+  // eslint-disable-next-line max-len
+  const calculator = new Calculator(new ParserReversePolishNotation(), new CalculatorReversePolishNotation());
 
-  const result = calcInReversePolishNotation(reversePolishNotation);
+  const result = calculator.calculate(expression);
 
   return result;
 };
 
-export default calculator;
+export default calculate;
