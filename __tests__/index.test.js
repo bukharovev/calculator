@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import Predicate from '../src/helpers/Predicate';
 import ParserReversePolishNotation from '../src/entities/ParserReversePolishNotation';
 import CalculatorReversePolishNotation from '../src/entities/CalculatorReversePolishNotation';
 import calculator from '../src/index';
@@ -8,16 +7,16 @@ const parserReversePolistNotation = new ParserReversePolishNotation();
 const calculatorReversePolishNotation = new CalculatorReversePolishNotation();
 
 test('isNumber', () => {
-  expect(Predicate.isNumber('-02.41')).toEqual(true);
-  expect(Predicate.isNumber('')).toEqual(false);
-  expect(Predicate.isNumber('9')).toEqual(true);
-  expect(Predicate.isNumber('305')).toEqual(true);
-  expect(Predicate.isNumber('-230.05')).toEqual(true);
-  expect(Predicate.isNumber('-30f')).toEqual(false);
-  expect(Predicate.isNumber('-')).toEqual(false);
-  expect(Predicate.isNumber('+')).toEqual(false);
-  expect(Predicate.isNumber('text')).toEqual(false);
-  expect(Predicate.isNumber('-0.5')).toEqual(true);
+  expect(parserReversePolistNotation.isNumber('-02.41')).toEqual(true);
+  expect(parserReversePolistNotation.isNumber('')).toEqual(false);
+  expect(parserReversePolistNotation.isNumber('9')).toEqual(true);
+  expect(parserReversePolistNotation.isNumber('305')).toEqual(true);
+  expect(parserReversePolistNotation.isNumber('-230.05')).toEqual(true);
+  expect(parserReversePolistNotation.isNumber('-30f')).toEqual(false);
+  expect(parserReversePolistNotation.isNumber('-')).toEqual(false);
+  expect(parserReversePolistNotation.isNumber('+')).toEqual(false);
+  expect(parserReversePolistNotation.isNumber('text')).toEqual(false);
+  expect(parserReversePolistNotation.isNumber('-0.5')).toEqual(true);
 });
 
 test('ParserReversePolishNotation', () => {

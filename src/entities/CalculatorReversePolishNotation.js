@@ -9,7 +9,7 @@ class CalculatorReversePolishNotation {
       '-': (a, b) => a - b,
       '*': (a, b) => a * b,
       '^': (a, b) => a ** b,
-      // square: (a, _) => Math.square(3),
+      // square: (a, _) => Math.square(a),
     };
     const stack = [];
 

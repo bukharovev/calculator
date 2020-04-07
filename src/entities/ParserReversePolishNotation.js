@@ -1,13 +1,28 @@
 /* eslint-disable class-methods-use-this */
-import Predicate from '../helpers/Predicate';
 
 class ParserReversePolishNotation {
   peek(stack) {
     return stack[stack.length - 1];
   }
 
-  getPriority(element) {
-    const priorityMap = {
+  isNumber(symbol) {
+    const regExp = /^[-+]?[0-9]\d*(\.\d+)?$/;
+
+    return symbol.match(regExp) !== null;
+  }
+
+  isOpenBracket(symbol) {
+    return symbol === '(';
+  }
+
+  isClosedBracket(symbol) {
+    return symbol === ')';
+  }
+
+  parse(expression) {
+    if (expression === '') return [];
+
+    const operators = {
       '(': 0,
       ')': 0,
       '+': 1,
@@ -16,46 +31,38 @@ class ParserReversePolishNotation {
       '/': 2,
       '^': 3,
     };
-    return priorityMap[element];
-  }
 
-  findOpenBracket(stack, output) {
-    while (stack.length !== 0) {
-      const element = stack.pop();
-      if (Predicate.isOpenBracket(element)) {
-        return [stack, output];
-      }
-      output.push(element);
-    }
-    return [stack, output];
-  }
-
-  parse(expression) {
-    if (expression === '') return [];
-
-    let stack = [];
-    let output = [];
+    const stack = [];
+    const output = [];
 
     const arrayOfElements = expression.split(' ');
 
     // eslint-disable-next-line array-callback-return
     arrayOfElements.map((element) => {
-      if (Predicate.isNumber(element)) {
+      if (this.isNumber(element)) {
         output.push(Number(element));
+        return;
       }
 
-      if (Predicate.isOpenBracket(element)) {
+      if (this.isOpenBracket(element)) {
         stack.push(element);
+        return;
       }
 
-      if (Predicate.isClosedBracket(element)) {
-        [stack, output] = this.findOpenBracket(stack, output);
+      if (this.isClosedBracket(element)) {
+        while (stack.length !== 0) {
+          const elementFromStask = stack.pop();
+          if (this.isOpenBracket(elementFromStask)) {
+            return;
+          }
+          output.push(elementFromStask);
+        }
+        return;
       }
 
-      if (Predicate.isBinaryOperator(element)) {
+      if (element in operators) {
         let elementFromStask = this.peek(stack);
-        // eslint-disable-next-line max-len
-        while ((this.getPriority(elementFromStask) >= this.getPriority(element)) && stack.length !== 0) {
+        while ((operators[elementFromStask] >= operators[element]) && stack.length !== 0) {
           output.push(stack.pop());
           elementFromStask = this.peek(stack);
         }
